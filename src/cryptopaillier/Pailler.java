@@ -54,6 +54,10 @@ public class Pailler {
     
     public BigInteger encrypt(BigInteger m){
         BigInteger r = new BigInteger(512, 2, new Random());
+        while(!(r.compareTo(N)==-1)){
+            r=r.nextProbablePrime();
+        }
+                
         BigInteger c=N.add(new BigInteger("1")).modPow(m, N.multiply(N)).multiply(r.modPow(N, N.multiply(N)));
         return c;
     }
